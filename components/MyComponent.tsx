@@ -5,6 +5,6 @@ export interface MyComponentProps {
 }
 
 export const MyComponent: React.FC<MyComponentProps> = ({ title }) => {
-  console.log(typeof title)
+  console.log(typeof title,title)
   return <h1>{title}</h1>;
 };
