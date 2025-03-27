@@ -12,6 +12,6 @@
     "moduleResolution": "node", // Use node for module resolution
     "types": ["react", "jest"]
   },
-  "include": ["components/**/*", "index.ts"],
+  "include": ["src/**/*", "src/index.ts"],
   "exclude": ["node_modules", "dist"]
 }
