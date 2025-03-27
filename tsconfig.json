@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "module": "ESNext",
+    "module": "NodeNext", // Ensure this is set to NodeNext
     "jsx": "react",
     "declaration": true,
     "declarationDir": "dist",
@@ -9,7 +9,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "nodenext", // Ensure this matches the module setting
     "types": ["react", "jest"]
   },
   "include": ["components/**/*", "index.ts"],

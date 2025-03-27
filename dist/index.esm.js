@@ -1,9 +1,5 @@
-import React from 'react';
-
-var MyComponent = function (_a) {
-    var title = _a.title;
-    return React.createElement("h1", null, title);
-};
-
-export { MyComponent };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MyComponent = void 0;
+var MyComponent_js_1 = require("./components/MyComponent.js");
+Object.defineProperty(exports, "MyComponent", { enumerable: true, get: function () { return MyComponent_js_1.MyComponent; } });
 //# sourceMappingURL=index.esm.js.map
