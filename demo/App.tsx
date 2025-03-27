@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import MyComponent from '../components/MyComponent';
 import Button from '../components/Button'; // Import Button component
+import AddButton from '../components/addButton/AddButton';
 
 const App = () => {
   const handleClick = () => {
@@ -12,6 +13,10 @@ const App = () => {
     <div>
       <MyComponent title="Hello, World!" />
       <Button label="Click Me" onClick={handleClick} /> {/* Render Button */}
+      <AddButton
+        text={"Get it"}
+        onCountChange={() => null} 
+      />
     </div>
   );
 };
