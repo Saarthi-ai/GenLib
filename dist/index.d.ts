@@ -1,2 +1,2 @@
-export { default as MyComponent } from './components/MyComponent';
-export type { MyComponentProps } from './components/MyComponent';
+export { MyComponent } from './components/MyComponent.js';
+export type { MyComponentProps } from './components/MyComponent.js';

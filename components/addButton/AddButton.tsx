@@ -9,7 +9,7 @@ import styles from "./AddButton.module.scss";
 //   getCount?:number | 0;
 // };
 
-const AddButton = (props) => {
+export const AddButton:React.FC = (props:any) => {
   const [count, setCount] = useState(1);
   const [showCounter, setShowCounter] = useState(false);
 
@@ -20,7 +20,7 @@ const AddButton = (props) => {
 
   const handlePlusClick = () => {
     // const newCount = count + 1;)
-    setCount((prev) => {
+    setCount((prev:any) => {
       if (Number.isNaN(prev)) {
         prev = 0;
       }
@@ -28,7 +28,7 @@ const AddButton = (props) => {
       return prev + 1;
     });
   };
-  function inputChange(e) {
+  function inputChange(e:any) {
     setCount(parseInt(e) || 0);
     props?.onCountChange(parseInt(e));
   }
@@ -84,5 +84,3 @@ const AddButton = (props) => {
     </div>
   );
 };
-
-export default AddButton;
