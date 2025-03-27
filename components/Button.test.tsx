@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Button from './Button';
+import { Button } from './Button';
 
 test('renders Button with the correct label', () => {
   render(<Button label="Click Me" onClick={() => {}} />);
