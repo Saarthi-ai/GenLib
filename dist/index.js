@@ -1,9 +1,11 @@
-import React from 'react';
+'use strict';
+
+var React = require('react');
 
 var MyComponent = function (_a) {
     var title = _a.title;
     return React.createElement("h1", null, title);
 };
 
-export { MyComponent };
-//# sourceMappingURL=index.esm.js.map
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map

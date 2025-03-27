@@ -4,11 +4,14 @@
     "module": "ESNext",
     "jsx": "react",
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "dist",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "nodenext",
+    "types": ["react", "jest"]
   },
-  "include": ["components/**/*", "index.ts"]
+  "include": ["components/**/*", "index.ts"],
+  "exclude": ["node_modules", "dist"]
 }

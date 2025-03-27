@@ -1,5 +1,5 @@
 import React from 'react';
-interface MyComponentProps {
+export interface MyComponentProps {
     title: string;
 }
 declare const MyComponent: React.FC<MyComponentProps>;

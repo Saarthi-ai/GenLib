@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface MyComponentProps {
+export interface MyComponentProps {
   title: string;
 }
 
