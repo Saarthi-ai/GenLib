@@ -5,7 +5,7 @@ interface props {
     duration: number;
 }
 
-const ClockProgress = ({ duration }: props) => {
+const ClockProgress:React.FC<props> = ({ duration }) => {
     const [rotation, setRotation] = useState<number>(0);
     const [time, setTime] = useState<any>(duration);
 
