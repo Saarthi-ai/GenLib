@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 interface ButtonProps {
     label: string;
     onClick: () => void;
 }
-export declare const Button: React.FC<ButtonProps>;
-export {};
+declare const Button: React.FC<ButtonProps>;
+export default Button;

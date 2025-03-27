@@ -1,0 +1,29 @@
+.clock {
+  width: 15px;
+  /* Fixed size for clock */
+  height: 15px;
+  /* Fixed size for clock */
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid #6C00C0;
+  /* Fixed border color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background);
+  /* Using CSS variable for dynamic background */
+  transition: background 1s ease;
+}
+
+.needle {
+  width: 1px;
+  /* Fixed width for the needle */
+  height: 7px;
+  /* Fixed length for the needle */
+  background-color: transparent;
+  position: absolute;
+  bottom: 50%;
+  transform-origin: bottom center;
+  /* Needle rotates from bottom */
+  transition: transform 1s linear;
+}
