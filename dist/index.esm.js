@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MyComponent = void 0;
-var MyComponent_js_1 = require("./components/MyComponent.js");
-Object.defineProperty(exports, "MyComponent", { enumerable: true, get: function () { return MyComponent_js_1.MyComponent; } });
-=======
-'use strict';
-
-var require$$0 = require('react');
+import require$$0 from 'react';
 
 var jsxRuntime = {exports: {}};
 
@@ -739,6 +730,5 @@ var MyComponent = function (_a) {
     return jsxRuntimeExports.jsx("h1", { children: title });
 };
 
-exports.MyComponent = MyComponent;
-//# sourceMappingURL=index.js.map
->>>>>>> a4e355ae2c522e5198cf5da6eaa2114b232a7188
+export { MyComponent };
+//# sourceMappingURL=index.esm.js.map
