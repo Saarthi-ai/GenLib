@@ -5,6 +5,7 @@
     "jsx": "react-jsx", // Ensure this is set to react-jsx
     "declaration": true,
     "declarationDir": "dist",
+    "emitDeclarationOnly": false,
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,

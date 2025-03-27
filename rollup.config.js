@@ -23,7 +23,11 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({ tsconfig: './tsconfig.json',
+      sourceMap: true, // Ensure sourcemaps are enabled
+      declaration: true, // Keep declaration files
+      declarationDir: "dist", // Store .d.ts files in dist
+      noEmit: false }),
     scss({ output: "dist/styles.css" })
   ]
 };
