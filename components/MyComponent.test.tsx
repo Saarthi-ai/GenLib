@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import MyComponent from './MyComponent';
+import { MyComponent } from './MyComponent'; // Fix import to use named export
 
 test('renders MyComponent with the correct title', () => {
   render(<MyComponent title="Test Title" />);

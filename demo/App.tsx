@@ -1,9 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import MyComponent from '../components/MyComponent';
-import Button from '../components/Button'; // Import Button component
-import AddButton from '../components/addButton/AddButton';
-import AddUserForm from '../components/addUser/AddUserForm';
+import { MyComponent } from '../components/MyComponent'; // Fix import to use named export
+
 
 const App = () => {
   const handleClick = () => {
@@ -13,17 +11,6 @@ const App = () => {
   return (
     <div>
       <MyComponent title="Hello, World!" />
-      <Button label="Click Me" onClick={handleClick} /> {/* Render Button */}
-      <AddButton
-        text={"Get it"}
-        onCountChange={() => null} 
-      />
-      {/* <AddUserForm
-        handleClickCancelAddUserModel={() =>
-          null
-        }
-        handleClickCreateUser={() => null}
-      /> */}
     </div>
   );
 };
