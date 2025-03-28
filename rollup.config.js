@@ -44,7 +44,7 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/src/components', // Match Rollup's dir option
+      declarationDir: 'dist/types', // Match TypeScript's declarationDir
       noEmit: false, // Ensure TypeScript emits compiled files
       include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
     }),
@@ -70,15 +70,6 @@ export default {
     }),
     copy({
       targets: [
-        {
-          src: 'src/components/**/*.module.scss', // Source SCSS files
-          dest: 'dist/src/components', // Destination folder
-          rename: (name, extension, fullPath) => {
-            // Preserve the folder structure and file name
-            const componentName = path.basename(path.dirname(fullPath));
-            return `${componentName}/${name}.${extension}`;
-          }
-        },
         {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/src/utils' // Place them in the dist/src/utils folder
