@@ -3,7 +3,7 @@
     "target": "ES5", // Target ES5 for compatibility
     "module": "ESNext", // Use ESNext modules for tree-shaking
     "lib": ["DOM", "ESNext"], // Include DOM and ESNext libraries
-    "jsx": "react", // Enable JSX for React
+    "jsx": "react-jsx", // Updated to use the modern JSX runtime
     "strict": true, // Enable strict type-checking
     "esModuleInterop": true, // Allow default imports from CommonJS modules
     "skipLibCheck": true, // Skip type checking of declaration files

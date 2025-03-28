@@ -1,3 +1,3 @@
-export { I as default } from './imgComp-DkFCvTN3.js';
-import 'react';
+export { I as default } from './imgComp-BQ6l-BCE.js';
+import 'react/jsx-runtime';
 //# sourceMappingURL=index.js.map
