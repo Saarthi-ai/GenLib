@@ -1,16 +1,4 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './clockProgress.module.scss'; // Ensure this import matches the file path
 var ClockProgress = function (_a) {
     var _b;
@@ -37,10 +25,24 @@ var ClockProgress = function (_a) {
     var getGradient = function (rotation) {
         return "conic-gradient(white ".concat(rotation, "deg, #6C00C0 ").concat(rotation, "deg)");
     };
-    return (_jsxs(_Fragment, { children: [_jsx("div", __assign({ className: styles.clock, style: (_b = {},
-                    _b['--background'] = getGradient(rotation),
-                    _b) }, { children: _jsx("div", { className: styles.needle, style: {
-                        transform: "rotate(".concat(rotation, "deg)"),
-                    } }) })), _jsxs("div", { children: [Math.floor(time / 3600) !== 0 && _jsxs("span", { children: [Math.floor(time / 3600), " hr "] }), Math.floor((time % 3600) / 60) !== 0 && _jsxs("span", { children: [Math.floor((time % 3600) / 60), " mins "] }), (Math.floor(time % 3600 % 60) !== 0 || Math.floor((time % 3600) / 60) === 0) && _jsxs("span", { children: [Math.floor(time % 3600 % 60), " secs "] }), "remaining"] })] }));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: styles.clock, style: (_b = {},
+                _b['--background'] = getGradient(rotation),
+                _b) },
+            React.createElement("div", { className: styles.needle, style: {
+                    transform: "rotate(".concat(rotation, "deg)"),
+                } })),
+        React.createElement("div", null,
+            Math.floor(time / 3600) !== 0 && React.createElement("span", null,
+                Math.floor(time / 3600),
+                " hr "),
+            Math.floor((time % 3600) / 60) !== 0 && React.createElement("span", null,
+                Math.floor((time % 3600) / 60),
+                " mins "),
+            (Math.floor(time % 3600 % 60) !== 0 || Math.floor((time % 3600) / 60) === 0) && React.createElement("span", null,
+                Math.floor(time % 3600 % 60),
+                " secs "),
+            "remaining")));
 };
 export default ClockProgress;
+//# sourceMappingURL=clockProgress.js.map

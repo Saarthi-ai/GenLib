@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "ESNext", // Use ESNext for modern module support
-    "jsx": "react-jsx", // Ensure this is set to react-jsx
-    "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": false,
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node", // Use node for module resolution
-    "types": ["react", "jest"]
+    "target": "ES5", // Target ES5 for compatibility
+    "module": "ESNext", // Use ESNext modules for tree-shaking
+    "lib": ["DOM", "ESNext"], // Include DOM and ESNext libraries
+    "jsx": "react", // Enable JSX for React
+    "strict": true, // Enable strict type-checking
+    "esModuleInterop": true, // Allow default imports from CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "moduleResolution": "node", // Use Node.js module resolution
+    "declaration": true, // Generate declaration files
+    "declarationDir": "./dist/components", // Output declaration files to dist/components
+    "outDir": "./dist", // Output compiled files to dist
+    "sourceMap": true, // Generate source maps
+    "baseUrl": "./", // Base URL for module resolution
+    "paths": {
+      "*": ["src/*"] // Map imports to the src folder
+    },
+    "types": ["react", "react-dom"] // Include React and React DOM types
   },
-  "include": ["src/**/*", "src/index.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"], // Include all files in the src folder
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist folders
 }
