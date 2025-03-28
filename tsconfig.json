@@ -9,15 +9,17 @@
     "skipLibCheck": true, // Skip type checking of declaration files
     "moduleResolution": "node", // Use Node.js module resolution
     "declaration": true, // Ensure declaration files are generated
-    "declarationDir": "./dist/src/components", // Match Rollup's dir option
-    "outDir": "./dist/src/components", // Match Rollup's dir option
+    "declarationDir": "./dist/types", // Place declaration files in a dedicated folder
+    "outDir": "./dist", // Output compiled files to the dist folder
     "sourceMap": true, // Generate source maps
     "baseUrl": "./", // Base URL for module resolution
     "paths": {
       "*": ["src/*"] // Map imports to the src folder
     },
-    "types": ["react", "react-dom"] // Include React and React DOM types
+    "types": ["react", "react-dom"], // Include React and React DOM types
+    "allowSyntheticDefaultImports": true, // Allow default imports for modules without default exports
+    "emitDeclarationOnly": false // Emit both JavaScript and declaration files
   },
-  "include": ["src/**/*", "src/types/**/*"], // Include all files in the src/types folder
-  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist folders
+  "include": ["src/**/*"], // Include all files in the src folder
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"] // Exclude node_modules, dist, and test files
 }
