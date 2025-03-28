@@ -19,19 +19,43 @@ const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => 
   return entries;
 }, {});
 
+// Dynamically detect all .tsx files for components in the src/components folder
+const componentTSXFiles = fs.readdirSync(componentsDir).reduce((entries, dir) => {
+  const tsxFile = path.join(componentsDir, dir, `${dir}.tsx`);
+  if (fs.existsSync(tsxFile)) {
+    entries[dir] = tsxFile; // Add .tsx file as an entry
+  }
+  return entries;
+}, {});
+
+// Merge .tsx files with existing component entries
+const allComponentEntries = { ...componentEntries, ...componentTSXFiles };
+
 // Add a global entry point for the library
 const globalEntry = { global: './src/index.ts' };
 
+// Dynamically detect all .d.ts files for components in the src/components folder
+const componentDeclarationFiles = fs.readdirSync(componentsDir).reduce((targets, dir) => {
+  const declarationFile = path.join(componentsDir, dir, `${dir}.d.ts`);
+  if (fs.existsSync(declarationFile)) {
+    targets.push({
+      src: declarationFile, // Source .d.ts file
+      dest: `dist/src/components` // Place all .d.ts files in a single folder
+    });
+  }
+  return targets;
+}, []);
+
 export default {
-  input: { ...globalEntry, ...componentEntries }, // Include global entry and components
+  input: { ...globalEntry, ...allComponentEntries }, // Include global entry and all components
   output: [
     {
       dir: 'dist', // Output global entry point to the dist folder
       format: 'esm',
       sourcemap: true,
       entryFileNames: (chunk) =>
-        chunk.name === 'global' ? 'index.js' : 'src/components/[name]/index.js', // Global entry as index.js
-      chunkFileNames: 'src/components/[name]/[name]-[hash].js',
+        chunk.name === 'global' ? 'index.js' : 'src/components/[name].js', // Place all component files in a single folder
+      chunkFileNames: 'src/components/[name]-[hash].js',
       assetFileNames: 'src/assets/[name]-[hash][extname]' // Emit assets in the assets folder
     }
   ],
@@ -77,7 +101,8 @@ export default {
         {
           src: 'src/assets/**/*', // Copy all files in the assets folder
           dest: 'dist/src/assets' // Place them in the dist/src/assets folder
-        }
+        },
+        ...componentDeclarationFiles // Dynamically copy all .d.ts files for components
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
     })
