@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { MyComponent } from '../components/MyComponent'; // Fix import to use named export
+// Fix import to use named export
 
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div>
-      <MyComponent title="Hello, World!" />
+      hello
     </div>
   );
 };

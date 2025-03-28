@@ -47,12 +47,12 @@ export default {
           src: 'src/components/**/*.module.scss', // Source SCSS files
           dest: 'dist/components', // Destination folder
           rename: (name, extension, fullPath) => {
-            // Preserve the folder structure and file name
+            // Correctly resolve the component folder name
             const componentName = path.basename(path.dirname(fullPath));
             return `${componentName}/${name}.${extension}`;
           }
         }
-      ],
+      ], // <-- Ensure this closing bracket is present
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
     })
   ]

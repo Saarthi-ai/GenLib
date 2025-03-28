@@ -8,9 +8,9 @@
     "esModuleInterop": true, // Allow default imports from CommonJS modules
     "skipLibCheck": true, // Skip type checking of declaration files
     "moduleResolution": "node", // Use Node.js module resolution
-    "declaration": true, // Generate declaration files
-    "declarationDir": "./dist/components", // Output declaration files to dist/components
-    "outDir": "./dist", // Output compiled files to dist
+    "declaration": true, // Ensure declaration files are generated
+    "declarationDir": "./dist", // Output declaration files to the dist folder
+    "outDir": "./dist", // Match Rollup's dir option
     "sourceMap": true, // Generate source maps
     "baseUrl": "./", // Base URL for module resolution
     "paths": {
