@@ -19,16 +19,20 @@ const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => 
   return entries;
 }, {});
 
+// Add a global entry point for the library
+const globalEntry = { global: './src/index.ts' };
+
 export default {
-  input: componentEntries, // Dynamically include all components
+  input: { ...globalEntry, ...componentEntries }, // Include global entry and components
   output: [
     {
-      dir: 'dist/src/components', // Output each component into its own folder
+      dir: 'dist', // Output global entry point to the dist folder
       format: 'esm',
       sourcemap: true,
-      entryFileNames: '[name]/index.js', // Each component gets its own folder
-      chunkFileNames: '[name]/[name]-[hash].js',
-      assetFileNames: '../assets/[name]-[hash][extname]' // Emit assets in the assets folder
+      entryFileNames: (chunk) =>
+        chunk.name === 'global' ? 'index.js' : 'src/components/[name]/index.js', // Global entry as index.js
+      chunkFileNames: 'src/components/[name]/[name]-[hash].js',
+      assetFileNames: 'src/assets/[name]-[hash][extname]' // Emit assets in the assets folder
     }
   ],
   external: ['react', 'react-dom'], // Exclude peer dependencies
@@ -61,7 +65,7 @@ export default {
       include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
       limit: 0, // Emit all files instead of inlining them
       emitFiles: true, // Ensure files are emitted to the output directory
-      fileName: '../assets/[name]-[hash][extname]', // Output file name format
+      fileName: 'src/assets/[name]-[hash][extname]', // Output file name format
       destDir: 'dist/src/assets' // Output directory for image files
     }),
     copy({

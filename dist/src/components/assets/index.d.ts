@@ -1,2 +1,2 @@
-import agentIcon from './assets/agentIcon.svg';
+import agentIcon from './agentIcon.svg';
 export { agentIcon };

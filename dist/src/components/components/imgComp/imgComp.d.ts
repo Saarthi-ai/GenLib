@@ -1,5 +1,3 @@
-import React from "react";
-interface props {
-}
-declare const ImgComp: React.FC<props>;
+import React from 'react';
+declare const ImgComp: React.FC;
 export default ImgComp;
