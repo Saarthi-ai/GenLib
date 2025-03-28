@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
 };
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useState, useEffect } from "react";
-import * as styles from "./clockProgress.module.scss";
+import styles from './clockProgress.module.scss'; // Ensure this import matches the file path
 var ClockProgress = function (_a) {
     var _b;
     var duration = _a.duration;

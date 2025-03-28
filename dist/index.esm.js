@@ -47,6 +47,8 @@ var ToggleButton = function () {
     return jsx("button", __assign({ onClick: handleToggle }, { children: isOn ? "On" : "Off" }));
 };
 
+var styles = {"clock":"clockProgress-module_clock__8fpkE","needle":"clockProgress-module_needle__ssS2z"};
+
 var ClockProgress = function (_a) {
     var _b;
     var duration = _a.duration;
@@ -72,9 +74,9 @@ var ClockProgress = function (_a) {
     var getGradient = function (rotation) {
         return "conic-gradient(white ".concat(rotation, "deg, #6C00C0 ").concat(rotation, "deg)");
     };
-    return (jsxs(Fragment, { children: [jsx("div", __assign({ className: undefined, style: (_b = {},
+    return (jsxs(Fragment, { children: [jsx("div", __assign({ className: styles.clock, style: (_b = {},
                     _b['--background'] = getGradient(rotation),
-                    _b) }, { children: jsx("div", { className: undefined, style: {
+                    _b) }, { children: jsx("div", { className: styles.needle, style: {
                         transform: "rotate(".concat(rotation, "deg)"),
                     } }) })), jsxs("div", { children: [Math.floor(time / 3600) !== 0 && jsxs("span", { children: [Math.floor(time / 3600), " hr "] }), Math.floor((time % 3600) / 60) !== 0 && jsxs("span", { children: [Math.floor((time % 3600) / 60), " mins "] }), (Math.floor(time % 3600 % 60) !== 0 || Math.floor((time % 3600) / 60) === 0) && jsxs("span", { children: [Math.floor(time % 3600 % 60), " secs "] }), "remaining"] })] }));
 };

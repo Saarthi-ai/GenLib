@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as styles from "./clockProgress.module.scss";
+import styles from './clockProgress.module.scss'; // Ensure this import matches the file path
 
 interface props {
     duration: number;
