@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import ImgComp from '../src/components/imgComp/imgComp';
 // Fix import to use named export
 
 
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <div>
       hello
+      <ImgComp />
     </div>
   );
 };
