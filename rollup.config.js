@@ -48,7 +48,7 @@ export default {
       limit: 0, // Emit all files instead of inlining them
       emitFiles: true, // Ensure files are emitted to the output directory
       fileName: 'assets/[name]-[hash][extname]', // Output file name format
-      destDir: 'dist/src' // Output directory for image files
+      destDir: 'dist/src/assets' // Output directory for image files
     }),
     copy({
       targets: [
@@ -69,6 +69,10 @@ export default {
             const componentName = path.basename(path.dirname(fullPath));
             return `${componentName}/${name}.${extension}`;
           }
+        },
+        {
+          src: 'src/utils/**/*', // Copy all files in the utils folder
+          dest: 'dist/src/utils' // Place them in the dist/src/utils folder
         }
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
