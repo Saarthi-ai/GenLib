@@ -1,6 +1,6 @@
 import React from "react";
-interface props {
+interface Props {
     duration: number;
 }
-declare const ClockProgress: React.FC<props>;
+declare const ClockProgress: React.FC<Props>;
 export default ClockProgress;

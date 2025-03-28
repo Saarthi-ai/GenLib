@@ -5,4 +5,4 @@ var ImgComp = function () {
 };
 
 export { ImgComp as I };
-//# sourceMappingURL=imgComp-B0jRCf9V.js.map
+//# sourceMappingURL=imgComp-DkFCvTN3.js.map

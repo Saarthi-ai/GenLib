@@ -1,1 +1,1 @@
-export { default } from './clockProgress';
+export { default } from './ClockProgress';

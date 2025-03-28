@@ -1,3 +1,3 @@
-export { I as default } from './imgComp-B0jRCf9V.js';
+export { I as default } from './imgComp-DkFCvTN3.js';
 import 'react';
 //# sourceMappingURL=index.js.map

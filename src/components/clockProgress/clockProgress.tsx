@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
-import styles from './clockProgress.module.scss';
+import styles from './ClockProgress.module.scss';
 import agentIcon from '../../assets/agentIcon.svg'; // Import the SVG file
 
-interface props {
+interface Props {
     duration: number;
 }
 
-const ClockProgress:React.FC<props> = ({ duration }) => {
+const ClockProgress: React.FC<Props> = ({ duration }) => {
     const [rotation, setRotation] = useState<number>(0);
-    const [time, setTime] = useState<any>(duration);
+    const [time, setTime] = useState<number>(duration);
 
     useEffect(() => {
         const rotationPerSecond = 360 / duration;
-        setTime(duration);
         const interval = setInterval(() => {
-            setRotation((prevRotation) => {
-                const newRotation = prevRotation + rotationPerSecond;
-                return newRotation >= 360 ? 360 : newRotation;
-            });
-
-            setTime((prevTime: any) => {
-                const newTime = Math.max(prevTime - 1, 0);
-                if (newTime === 0) clearInterval(interval); // Stop interval when time reaches 0
-                return newTime;
-            });
+            setRotation((prevRotation) => Math.min(prevRotation + rotationPerSecond, 360));
+            setTime((prevTime) => Math.max(prevTime - 1, 0));
         }, 1000);
 
         return () => clearInterval(interval); // Cleanup on component unmount
@@ -33,8 +24,7 @@ const ClockProgress:React.FC<props> = ({ duration }) => {
         return `conic-gradient(white ${rotation}deg, #6C00C0 ${rotation}deg)`;
     };
 
-
-    return (<>
+    return (
         <div>
             <img src={agentIcon} alt="Agent Icon" />
             <div
@@ -50,13 +40,12 @@ const ClockProgress:React.FC<props> = ({ duration }) => {
                     }}
                 />
             </div>
+            <div>
+                {Math.floor(time / 3600) > 0 && <span>{Math.floor(time / 3600)} hr </span>}
+                {Math.floor((time % 3600) / 60) > 0 && <span>{Math.floor((time % 3600) / 60)} mins </span>}
+                <span>{Math.floor(time % 60)} secs remaining</span>
+            </div>
         </div>
-        <div>
-            {Math.floor(time / 3600) !== 0 && <span>{Math.floor(time / 3600)} hr </span>}
-            {Math.floor((time % 3600) / 60) !== 0 && <span>{Math.floor((time % 3600) / 60)} mins </span>}
-            {(Math.floor(time % 3600 % 60) !== 0 || Math.floor((time % 3600) / 60) === 0) && <span>{Math.floor(time % 3600 % 60)} secs </span>}
-            remaining
-        </div></>
     );
 };
 
