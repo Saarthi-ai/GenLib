@@ -8,9 +8,9 @@
     "esModuleInterop": true, // Allow default imports from CommonJS modules
     "skipLibCheck": true, // Skip type checking of declaration files
     "moduleResolution": "node", // Use Node.js module resolution
-    "declaration": true, // Generate declaration files
-    "declarationDir": "./dist/components", // Output declaration files to dist/components
-    "outDir": "./dist", // Output compiled files to dist
+    "declaration": true, // Ensure declaration files are generated
+    "declarationDir": "./dist/src/components", // Match Rollup's dir option
+    "outDir": "./dist/src/components", // Match Rollup's dir option
     "sourceMap": true, // Generate source maps
     "baseUrl": "./", // Base URL for module resolution
     "paths": {
@@ -18,6 +18,6 @@
     },
     "types": ["react", "react-dom"] // Include React and React DOM types
   },
-  "include": ["src/**/*"], // Include all files in the src folder
+  "include": ["src/**/*", "src/types/**/*"], // Include all files in the src/types folder
   "exclude": ["node_modules", "dist"] // Exclude node_modules and dist folders
 }
