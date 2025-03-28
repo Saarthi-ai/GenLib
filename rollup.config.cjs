@@ -1,13 +1,13 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
-import copy from 'rollup-plugin-copy';
-import url from '@rollup/plugin-url';
-import sass from 'sass'; // Import Dart Sass explicitly
-import path from 'path';
-import fs from 'fs'; // Import Node.js file system module
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const typescript = require('@rollup/plugin-typescript');
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const postcss = require('rollup-plugin-postcss');
+const copy = require('rollup-plugin-copy');
+const url = require('@rollup/plugin-url');
+const sass = require('sass'); // Import Dart Sass explicitly
+const path = require('path');
+const fs = require('fs'); // Import Node.js file system module
 
 // Dynamically detect all components in the src/components folder
 const componentsDir = path.resolve(__dirname, 'src/components');
@@ -19,7 +19,7 @@ const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => 
   return entries;
 }, {});
 
-export default {
+module.exports = {
   input: componentEntries, // Dynamically include all components
   output: [
     {

@@ -47,5 +47,5 @@ var ClockProgress = function (_a) {
             "remaining")));
 };
 
-export { ClockProgress };
+export { ClockProgress as default };
 //# sourceMappingURL=index.js.map

@@ -9,8 +9,8 @@
     "skipLibCheck": true, // Skip type checking of declaration files
     "moduleResolution": "node", // Use Node.js module resolution
     "declaration": true, // Ensure declaration files are generated
-    "declarationDir": "./dist/src", // Match Rollup's dir option
-    "outDir": "./dist/src", // Match Rollup's dir option
+    "declarationDir": "./dist/src/components", // Match Rollup's dir option
+    "outDir": "./dist/src/components", // Match Rollup's dir option
     "sourceMap": true, // Generate source maps
     "baseUrl": "./", // Base URL for module resolution
     "paths": {
