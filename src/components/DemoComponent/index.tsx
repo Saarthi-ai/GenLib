@@ -5,7 +5,7 @@ interface DemoComponentProps {
 }
 
 const DemoComponent: React.FC<DemoComponentProps> = ({ message }) => {
-  return <div>{message}</div>;
+  return <div className="message">{message}</div>;
 };
 
 export default DemoComponent; // Ensure this default export exists

@@ -3,5 +3,3 @@ export { default as DemoComponent1 } from "./components/DemoComponent1";
 export { default as DemoComponent2 } from "./components/DemoComponent2";
 export { default as DemoComponent3 } from "./components/DemoComponent3";
 export { default as DemoComponent4 } from "./components/DemoComponent4";
-// Ensure the paths match the actual folder and file names (case-sensitive)
-

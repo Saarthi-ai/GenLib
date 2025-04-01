@@ -100,6 +100,10 @@ export default {
         {
           src: 'src/assets/**/*', // Copy all files in the assets folder
           dest: 'dist/src/assets' // Place them in the dist/src/assets folder
+        },
+        {
+          src: 'src/components/**/*.scss', // Copy all SCSS files from components
+          dest: 'dist/src/components' // Place them in the dist/src/components folder
         }
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
