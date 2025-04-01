@@ -9,6 +9,8 @@ import sass from 'sass'; // Import Dart Sass explicitly
 import path from 'path';
 import fs from 'fs'; // Import Node.js file system module
 
+const globalEntry = { global: './src/index.ts' }; // Ensure the global entry is correctly defined
+
 // Dynamically detect all components in the src/components folder
 const componentsDir = path.resolve(__dirname, 'src/components');
 const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => {
@@ -44,7 +46,7 @@ const componentDeclarationFiles = fs.readdirSync(componentsDir).reduce((targets,
 }, []);
 
 export default {
-  input: { ...globalEntry, ...componentEntries }, // Include global entry and components
+  input: './src/index.ts', // Explicitly set the entry point to src/index.ts
   output: [
     {
       dir: 'dist', // Output global entry point to the dist folder
@@ -65,7 +67,7 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/types', // Ensure TypeScript declarations are generated in dist/types
+      declarationDir: 'dist/src', // Place declaration files in dist/src
       noEmit: false, // Ensure TypeScript emits compiled files
       include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
     }),
@@ -92,19 +94,13 @@ export default {
     copy({
       targets: [
         {
-          src: 'dist/types/index.d.ts', // Copy the main TypeScript declaration file
-          dest: 'dist' // Place it in the root of the dist folder
-        },
-        {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/src/utils' // Place them in the dist/src/utils folder
         },
         {
           src: 'src/assets/**/*', // Copy all files in the assets folder
           dest: 'dist/src/assets' // Place them in the dist/src/assets folder
-        },
-        ...componentTSXFiles, // Dynamically copy all .tsx files for components
-        ...componentDeclarationFiles // Dynamically copy all .d.ts files for components
+        }
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
     })
