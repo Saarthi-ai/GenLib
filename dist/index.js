@@ -30,4 +30,3 @@ const DemoComponent4 = ({ content }) => {
 };
 
 export { DemoComponent, DemoComponent1, DemoComponent2, DemoComponent3, DemoComponent4 };
-//# sourceMappingURL=index.js.map

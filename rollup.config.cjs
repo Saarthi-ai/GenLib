@@ -15,7 +15,7 @@ module.exports = {
     {
       dir: 'dist', // Output everything to the dist folder
       format: 'esm',
-      sourcemap: true, // Generate source maps
+      sourcemap: false, // Disable source map generation
       entryFileNames: 'index.js', // Ensure the global entry is named index.js
       chunkFileNames: 'components/[name]-[hash].js', // Place component chunks in components folder
       assetFileNames: 'assets/[name]-[hash][extname]' // Emit assets in the assets folder
