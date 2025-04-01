@@ -65,7 +65,7 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/types', // Match TypeScript's declarationDir
+      declarationDir: 'dist/types', // Ensure TypeScript declarations are generated in dist/types
       noEmit: false, // Ensure TypeScript emits compiled files
       include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
     }),
@@ -91,6 +91,10 @@ export default {
     }),
     copy({
       targets: [
+        {
+          src: 'dist/types/index.d.ts', // Copy the main TypeScript declaration file
+          dest: 'dist' // Place it in the root of the dist folder
+        },
         {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/src/utils' // Place them in the dist/src/utils folder
