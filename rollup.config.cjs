@@ -7,7 +7,6 @@ const copy = require('rollup-plugin-copy');
 const url = require('@rollup/plugin-url');
 const sass = require('sass'); // Import Dart Sass explicitly
 const path = require('path');
-const fs = require('fs'); // Import Node.js file system module
 
 module.exports = {
   input: './src/index.ts', // Explicitly set the entry point to src/index.ts
@@ -28,7 +27,7 @@ module.exports = {
     commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
-      sourceMap: true,
+      sourceMap: false, // Disable source maps for TypeScript
       declaration: true,
       declarationDir: 'dist/components', // Place declaration files directly in dist/components
       noEmit: false, // Ensure TypeScript emits compiled files
@@ -44,7 +43,7 @@ module.exports = {
         ['sass', { implementation: sass }] // Use Dart Sass explicitly
       ],
       minimize: true, // Minify CSS output
-      sourceMap: true // Generate source maps for CSS
+      sourceMap: false // Disable source maps for CSS
     }),
     url({
       include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
@@ -55,10 +54,6 @@ module.exports = {
     }),
     copy({
       targets: [
-        {
-          src: 'dist/components/index.d.ts', // Copy the main TypeScript declaration file
-          dest: 'dist' // Place it in the root of the dist folder
-        },
         {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/utils' // Place them in the dist/utils folder

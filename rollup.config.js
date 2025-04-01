@@ -7,43 +7,6 @@ import copy from 'rollup-plugin-copy';
 import url from '@rollup/plugin-url';
 import sass from 'sass'; // Import Dart Sass explicitly
 import path from 'path';
-import fs from 'fs'; // Import Node.js file system module
-
-const globalEntry = { global: './src/index.ts' }; // Ensure the global entry is correctly defined
-
-// Dynamically detect all components in the src/components folder
-const componentsDir = path.resolve(__dirname, 'src/components');
-const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => {
-  const fullPath = path.join(componentsDir, dir, 'index.ts');
-  if (fs.existsSync(fullPath)) {
-    entries[dir] = fullPath; // Add component entry
-  }
-  return entries;
-}, {});
-
-// Dynamically detect all .tsx files for components in the src/components folder
-const componentTSXFiles = fs.readdirSync(componentsDir).reduce((targets, dir) => {
-  const tsxFile = path.join(componentsDir, dir, `${dir}.tsx`);
-  if (fs.existsSync(tsxFile)) {
-    targets.push({
-      src: tsxFile, // Source .tsx file
-      dest: `dist/components` // Place all .tsx files in a single folder
-    });
-  }
-  return targets;
-}, []);
-
-// Dynamically detect all .d.ts files for components in the src/components folder
-const componentDeclarationFiles = fs.readdirSync(componentsDir).reduce((targets, dir) => {
-  const declarationFile = path.join(componentsDir, dir, `${dir}.d.ts`);
-  if (fs.existsSync(declarationFile)) {
-    targets.push({
-      src: declarationFile, // Source .d.ts file
-      dest: `dist/components` // Place all .d.ts files in a single folder
-    });
-  }
-  return targets;
-}, []);
 
 export default {
   input: './src/index.ts', // Explicitly set the entry point to src/index.ts
@@ -51,9 +14,8 @@ export default {
     {
       dir: 'dist', // Output everything to the dist folder
       format: 'esm',
-      sourcemap: true,
-      entryFileNames: (chunk) =>
-        chunk.name === 'global' ? 'index.js' : 'components/[name].js', // Place the global entry as index.js in the root
+      sourcemap: false, // Disable source map generation
+      entryFileNames: 'index.js', // Ensure the global entry is named index.js
       chunkFileNames: 'components/[name]-[hash].js', // Place component chunks in components folder
       assetFileNames: 'assets/[name]-[hash][extname]' // Emit assets in the assets folder
     }
@@ -74,7 +36,7 @@ export default {
     postcss({
       extract: (id) => {
         const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the same folder as the JS file
+        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the correct folder
       },
       modules: true, // Enable CSS Modules
       use: [
@@ -93,10 +55,6 @@ export default {
     copy({
       targets: [
         {
-          src: 'dist/components/index.d.ts', // Copy the main TypeScript declaration file
-          dest: 'dist' // Place it in the root of the dist folder
-        },
-        {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/utils' // Place them in the dist/utils folder
         },
@@ -107,9 +65,7 @@ export default {
         {
           src: 'src/components/**/*.scss', // Copy all SCSS files from components
           dest: 'dist/components' // Place them in the dist/components folder
-        },
-        ...componentTSXFiles, // Dynamically copy all .tsx files for components
-        ...componentDeclarationFiles // Dynamically copy all .d.ts files for components
+        }
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
     })
