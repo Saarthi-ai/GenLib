@@ -27,7 +27,7 @@ const componentTSXFiles = fs.readdirSync(componentsDir).reduce((targets, dir) =>
   if (fs.existsSync(tsxFile)) {
     targets.push({
       src: tsxFile, // Source .tsx file
-      dest: `dist/src/components` // Place all .tsx files in a single folder
+      dest: `dist/components` // Place all .tsx files in a single folder
     });
   }
   return targets;
@@ -39,7 +39,7 @@ const componentDeclarationFiles = fs.readdirSync(componentsDir).reduce((targets,
   if (fs.existsSync(declarationFile)) {
     targets.push({
       src: declarationFile, // Source .d.ts file
-      dest: `dist/src/components` // Place all .d.ts files in a single folder
+      dest: `dist/components` // Place all .d.ts files in a single folder
     });
   }
   return targets;
@@ -67,14 +67,14 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/types', // Place declaration files in dist/types
+      declarationDir: 'dist/components', // Place declaration files directly in dist/components
       noEmit: false, // Ensure TypeScript emits compiled files
       include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
     }),
     postcss({
       extract: (id) => {
         const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the correct folder
+        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the same folder as the JS file
       },
       modules: true, // Enable CSS Modules
       use: [
@@ -93,6 +93,10 @@ export default {
     copy({
       targets: [
         {
+          src: 'dist/components/index.d.ts', // Copy the main TypeScript declaration file
+          dest: 'dist' // Place it in the root of the dist folder
+        },
+        {
           src: 'src/utils/**/*', // Copy all files in the utils folder
           dest: 'dist/utils' // Place them in the dist/utils folder
         },
@@ -103,7 +107,9 @@ export default {
         {
           src: 'src/components/**/*.scss', // Copy all SCSS files from components
           dest: 'dist/components' // Place them in the dist/components folder
-        }
+        },
+        ...componentTSXFiles, // Dynamically copy all .tsx files for components
+        ...componentDeclarationFiles // Dynamically copy all .d.ts files for components
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written
     })

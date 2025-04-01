@@ -1,10 +1,10 @@
 import React from 'react';
 
 const DemoComponent = ({ message }) => {
-    return React.createElement("div", { className: "message" }, message);
+    return React.createElement("div", { className: "demo-component" }, message);
 };
 
-var agentIcon = "src/assets/agentIcon-794eac73bc59daf3.svg";
+var agentIcon = "assets/agentIcon-794eac73bc59daf3.svg";
 
 const DemoComponent1 = ({ title }) => {
     return (React.createElement("div", { className: "demo-component1" },
