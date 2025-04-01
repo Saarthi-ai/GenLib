@@ -4,3 +4,4 @@ interface props {
 }
 declare const ClockProgress: React.FC<props>;
 export default ClockProgress;
+//# sourceMappingURL=clockProgress.d.ts.map

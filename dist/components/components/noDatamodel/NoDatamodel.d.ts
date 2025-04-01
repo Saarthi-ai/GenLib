@@ -14,3 +14,4 @@ interface props {
 }
 export default function NoDatamodel(props: props): React.JSX.Element;
 export {};
+//# sourceMappingURL=NoDatamodel.d.ts.map

@@ -11,3 +11,4 @@ interface props {
 }
 declare const Chip: (props: props) => React.JSX.Element;
 export default Chip;
+//# sourceMappingURL=Chip.d.ts.map

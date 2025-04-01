@@ -12,3 +12,4 @@ interface ProgressProps {
 }
 declare const ColouredButton: React.FC<ProgressProps>;
 export default ColouredButton;
+//# sourceMappingURL=colouredButton.d.ts.map

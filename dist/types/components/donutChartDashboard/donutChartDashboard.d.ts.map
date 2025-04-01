@@ -1,0 +1,1 @@
+{"version":3,"file":"donutChartDashboard.d.ts","sourceRoot":"","sources":["../../../../src/components/donutChartDashboard/donutChartDashboard.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAmB,MAAM,OAAO,CAAC;AASxC,UAAU,aAAa;IACrB,IAAI,EAAE,GAAG,CAAC;IACV,WAAW,EAAE,MAAM,CAAC;CACrB;AAED,QAAA,MAAM,mBAAmB,EAAE,KAAK,CAAC,EAAE,CAAC,aAAa,CA0ChD,CAAA;AAED,eAAe,mBAAmB,CAAC"}

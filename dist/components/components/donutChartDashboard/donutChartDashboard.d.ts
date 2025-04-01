@@ -5,3 +5,4 @@ interface ProgressProps {
 }
 declare const DonutChartDashboard: React.FC<ProgressProps>;
 export default DonutChartDashboard;
+//# sourceMappingURL=donutChartDashboard.d.ts.map

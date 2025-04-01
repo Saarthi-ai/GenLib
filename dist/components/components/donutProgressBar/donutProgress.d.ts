@@ -4,3 +4,4 @@ interface ProgressProps {
 }
 declare const DonutProgress: React.FC<ProgressProps>;
 export default DonutProgress;
+//# sourceMappingURL=donutProgress.d.ts.map

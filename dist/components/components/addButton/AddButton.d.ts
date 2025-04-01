@@ -7,3 +7,4 @@ type Props = {
 };
 declare const AddButton: (props: Props) => React.JSX.Element;
 export default AddButton;
+//# sourceMappingURL=AddButton.d.ts.map
