@@ -27,7 +27,7 @@ export default {
     commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
-      sourceMap: true,
+      sourceMap: false, // Disable source maps for TypeScript
       declaration: true,
       declarationDir: 'dist/components', // Place declaration files directly in dist/components
       noEmit: false, // Ensure TypeScript emits compiled files
@@ -36,14 +36,14 @@ export default {
     postcss({
       extract: (id) => {
         const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the correct folder
+        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the same folder as the JS file
       },
       modules: true, // Enable CSS Modules
       use: [
         ['sass', { implementation: sass }] // Use Dart Sass explicitly
       ],
       minimize: true, // Minify CSS output
-      sourceMap: true // Generate source maps for CSS
+      sourceMap: false // Disable source maps for CSS
     }),
     url({
       include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
