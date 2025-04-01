@@ -9,4 +9,5 @@ export default defineConfig({
       '@': '/Users/ekatakumari/Desktop/GenLib', // Ensure proper aliasing
     },
   },
+  assetsInclude: ['**/*.svg'],
 });

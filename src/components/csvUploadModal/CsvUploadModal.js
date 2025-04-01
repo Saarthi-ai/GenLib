@@ -1,6 +1,6 @@
 import React from "react";
 import "./CsvUploadModal.css";
-import { trueSign, falseSign, inActiveCSV, activeCSV } from '../../assets/index';
+import icons from '../../assets/index';
 
 function CsvUploadModal(props) {
   return (
@@ -19,7 +19,7 @@ function CsvUploadModal(props) {
           <div className="csv-uploaded-section">
             <div className="csv-uploaded-img">
               <img
-                src={props.percentage == 100 ? activeCSV : inActiveCSV}
+                src={props.percentage == 100 ? icons.activeCSV : icons.inactiveCSV}
                 id="auto_CSV_percentage"
               />
             </div>
@@ -44,7 +44,7 @@ function CsvUploadModal(props) {
                   </p>{" "}
                   <img
                     className="imguploadRight"
-                    src={!props.failedMsg ? trueSign : falseSign}
+                    src={!props.failedMsg ? icons.trueSign : icons.falseSign}
                     id="auto_img_upload_right"
                   ></img>
                 </div>

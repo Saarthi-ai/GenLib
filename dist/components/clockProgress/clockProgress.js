@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from './clockProgress.module.scss'; // Ensure this import matches the file path
+import styles from './clockProgress.module.scss';
+import icons from '../../assets/index'; // Import the SVG file
 var ClockProgress = function (_a) {
     var _b;
     var duration = _a.duration;
@@ -26,12 +27,14 @@ var ClockProgress = function (_a) {
         return "conic-gradient(white ".concat(rotation, "deg, #6C00C0 ").concat(rotation, "deg)");
     };
     return (React.createElement(React.Fragment, null,
-        React.createElement("div", { className: styles.clock, style: (_b = {},
-                _b['--background'] = getGradient(rotation),
-                _b) },
-            React.createElement("div", { className: styles.needle, style: {
-                    transform: "rotate(".concat(rotation, "deg)"),
-                } })),
+        React.createElement("div", null,
+            React.createElement("img", { src: icons.agentIcon, alt: "Agent Icon" }),
+            React.createElement("div", { className: styles.clock, style: (_b = {},
+                    _b['--background'] = getGradient(rotation),
+                    _b) },
+                React.createElement("div", { className: styles.needle, style: {
+                        transform: "rotate(".concat(rotation, "deg)"),
+                    } }))),
         React.createElement("div", null,
             Math.floor(time / 3600) !== 0 && React.createElement("span", null,
                 Math.floor(time / 3600),

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from './clockProgress.module.scss';
-import agentIcon from '../../assets/agentIcon.svg'; // Import the SVG file
+import icons from '../../assets/index'; // Import the SVG file
 
 interface props {
     duration: number;
@@ -36,7 +36,7 @@ const ClockProgress:React.FC<props> = ({ duration }) => {
 
     return (<>
         <div>
-            <img src={agentIcon} alt="Agent Icon" />
+            <img src={icons.agentIcon} alt="Agent Icon" />
             <div
                 className={styles.clock}
                 style={{

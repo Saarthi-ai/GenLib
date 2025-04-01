@@ -1,6 +1,6 @@
 import React from "react";
 import "./Chip.scss";
-import { deleteCircleBtn } from '../../assets/index';
+import icons from '../../assets/index';
 
 interface props {
   key: string | number;
@@ -41,7 +41,7 @@ const Chip = (props: props) => {
       <span className="content">{props.value}</span>
       {!props.disableDeleteIcon && (
         <img
-          src={deleteCircleBtn}
+          src={icons.deleteCircleBtn}
           alt=""
           className="deleteBtn"
           onClick={props.onDelete}

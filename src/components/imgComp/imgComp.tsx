@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { agentIcon } from "../../assets/index";
+import icons from "../../assets/index";
 
 interface props {
     // duration: number;
@@ -8,7 +8,7 @@ interface props {
 const ImgComp:React.FC<props> = () => {
     return (
         <div>
-            <img src={agentIcon} />
+            <img src={icons.agentIcon} />
             <p>Agent 1</p>
         </div>
     );

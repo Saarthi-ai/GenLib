@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import style from './donutChartDash.module.scss'
 import DonutChart from "react-donut-chart";
-import { noPhoneDataIcon } from "../../../theme/assets/svg";
+import icons from "../../assets/index";
 import { useNavigate } from "react-router-dom";
-import NoDatamodel from "../../agentDesktop/generic/noDatamodel/NoDatamodel";
+import NoDatamodel from "../../components/noDatamodel/NoDatamodel";
 
 
 interface ProgressProps {
@@ -34,14 +34,14 @@ const DonutChartDashboard: React.FC<ProgressProps> = ({ data, totalCohort }) => 
             height={424}
             width={630}
             strokeColor="false"
-            onMouseEnter={(item) => setTooltip(item)}
+            onMouseEnter={(item:any) => setTooltip(item)}
             onMouseLeave={() => setTooltip(null)}
           />
         </div>
         :
         <div className={style.error} style={{ position: 'relative' }}>
           <NoDatamodel
-            srcImg={noPhoneDataIcon}
+            srcImg={icons.noPhoneDataIcon}
             // message="Ooops!! We can’t seem to find a page you are looking for."
             extraCss={{ message: style.message, img: style.img }}
           // button={{ message: "Back to Home", onClick: () => navigate('/') }}

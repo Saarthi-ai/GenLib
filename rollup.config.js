@@ -5,12 +5,13 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import copy from 'rollup-plugin-copy';
 import path from 'path';
+import url from '@rollup/plugin-url';
 
 export default {
   input: 'src/index.ts',
   output: [
     {
-      dir: 'dist/components', // Output each component into its own folder
+      dir: 'dist', // Output each component into its own folder
       format: 'esm',
       sourcemap: true,
       entryFileNames: '[name]/index.js', // Each component gets its own folder
@@ -27,7 +28,7 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/components',
+      declarationDir: 'dist/types',
       noEmit: false
     }),
     postcss({
@@ -40,6 +41,13 @@ export default {
       use: ['sass'], // Use Sass for SCSS files
       minimize: true, // Minify CSS output
       sourceMap: true // Generate source maps for CSS
+    }),
+    url({
+      include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
+      limit: 0, // Emit all files instead of inlining them
+      emitFiles: true, // Ensure files are emitted to the output directory
+      fileName: 'src/assets/[name]-[hash][extname]', // Output file name format
+      destDir: 'dist/src/assets' // Output directory for image files
     }),
     copy({
       targets: [

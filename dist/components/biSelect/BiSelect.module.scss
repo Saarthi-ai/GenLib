@@ -1,0 +1,18 @@
+.biSelect {
+    display: flex;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+    height: 35px;
+
+    .biSelectOption {
+        width: 50%;
+        text-align: center;
+        border-radius: 5px;
+        padding: 6px;
+        cursor: pointer;
+    }
+
+    .selected {
+        background-color: #ddebff;
+    }
+}

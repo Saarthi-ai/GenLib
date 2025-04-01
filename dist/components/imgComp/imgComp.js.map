@@ -1,0 +1,1 @@
+{"version":3,"file":"imgComp.js","sourceRoot":"","sources":["../../../src/components/imgComp/imgComp.tsx"],"names":[],"mappings":"AAAA,OAAO,KAA8B,MAAM,OAAO,CAAC;AAEnD,OAAO,KAAK,MAAM,oBAAoB,CAAC;AAKvC,IAAM,OAAO,GAAmB;IAC5B,OAAO,CACH;QACI,6BAAK,GAAG,EAAE,KAAK,CAAC,SAAS,GAAI;QAC7B,yCAAc,CACZ,CACT,CAAC;AACN,CAAC,CAAA;AAED,eAAe,OAAO,CAAC"}
