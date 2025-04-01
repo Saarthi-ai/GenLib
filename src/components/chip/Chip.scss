@@ -1,0 +1,21 @@
+.custom__chip__wrapper {
+  background-color: rgb(1, 116, 255);
+  height: 25px;
+  font-size: 12px;
+  margin: 2px;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+
+  img.deleteBtn {
+    display: none;
+  }
+
+  img.display__show {
+    display: inline-block;
+  }
+}

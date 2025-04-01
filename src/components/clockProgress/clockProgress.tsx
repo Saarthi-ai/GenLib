@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from './clockProgress.module.scss'; // Ensure this import matches the file path
+import styles from './clockProgress.module.scss';
+import agentIcon from '../../assets/agentIcon.svg'; // Import the SVG file
 
 interface props {
     duration: number;
@@ -34,18 +35,21 @@ const ClockProgress:React.FC<props> = ({ duration }) => {
 
 
     return (<>
-        <div
-            className={styles.clock}
-            style={{
-                ['--background' as any]: getGradient(rotation),
-            }}
-        >
+        <div>
+            <img src={agentIcon} alt="Agent Icon" />
             <div
-                className={styles.needle}
+                className={styles.clock}
                 style={{
-                    transform: `rotate(${rotation}deg)`,
+                    ['--background' as any]: getGradient(rotation),
                 }}
-            />
+            >
+                <div
+                    className={styles.needle}
+                    style={{
+                        transform: `rotate(${rotation}deg)`,
+                    }}
+                />
+            </div>
         </div>
         <div>
             {Math.floor(time / 3600) !== 0 && <span>{Math.floor(time / 3600)} hr </span>}

@@ -1,0 +1,12 @@
+.circularProgressDiv {
+	width: 90px;
+	height: 90px;
+	opacity: 0.5;
+	margin-left: auto;
+	margin-right: 6px;
+	margin-bottom: 12px;
+}
+
+.circularProgressDiv:hover {
+	opacity: 1;
+}

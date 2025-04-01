@@ -1,0 +1,54 @@
+.donutChartDashboard {
+	g[class*='legend'] {
+		// margin-top: 25px;
+		// transform: translateY(36px);
+
+		g[class*='legend-item'] {
+			// dy: 20px;
+
+			rect {
+				rx: 21px;
+				height: 27px;
+				width: 27px;
+			}
+
+			text {
+				font-size: 12px;
+			}
+		}
+	}
+
+	g[class*='innertext'] {
+		display: none;
+	}
+}
+
+.error {
+	height: 424px;
+	width: 630px;
+
+	.message {
+		font-family: "Roboto";
+		font-style: normal;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 18px;
+		color: #9b9b9b;
+	}
+
+	.img {}
+}
+
+
+.tooltipStyle {
+	position: absolute;
+	background: white;
+	padding: 6px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	pointer-events: none;
+	z-index: 1000;
+	transform: translate(-50%, 0);
+	box-shadow: 0px 3px 3px #ccc;
+}
