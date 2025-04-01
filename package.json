@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "module": "dist/index.js",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@rollup/plugin-url": "^8.0.2",
     "postcss": "^8.5.3",

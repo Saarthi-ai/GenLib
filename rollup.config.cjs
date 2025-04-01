@@ -5,90 +5,85 @@ const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const postcss = require('rollup-plugin-postcss');
 const copy = require('rollup-plugin-copy');
 const url = require('@rollup/plugin-url');
-const sass = require('sass'); // Import Dart Sass explicitly
+const sass = require('sass');
 const path = require('path');
-const fs = require('fs'); // Import Node.js file system module
+const fs = require('fs');
 
-// Dynamically detect all components in the src/components folder
 const componentsDir = path.resolve(__dirname, 'src/components');
 const componentEntries = fs.readdirSync(componentsDir).reduce((entries, dir) => {
-  const fullPath = path.join(componentsDir, dir, 'index.ts');
+  const fullPath = path.join(componentsDir, dir, 'index.tsx'); 
   if (fs.existsSync(fullPath)) {
-    entries[dir] = fullPath; // Add component entry
-  } 
+    entries[dir] = fullPath;
+  }
   return entries;
 }, {});
 
-// Add a global entry point for the library
+
 const globalEntry = { global: './src/index.ts' };
 
 module.exports = {
-  input: { ...globalEntry, ...componentEntries }, // Include global entry and components
+  input: { ...globalEntry, ...componentEntries },
   output: [
     {
-      dir: 'dist', // Output global entry point to the dist folder
+      dir: 'dist', 
       format: 'esm',
       sourcemap: true,
       entryFileNames: (chunk) =>
-        chunk.name === 'global' ? 'index.js' : 'src/components/[name]/index.js', // Global entry as index.js
-      chunkFileNames: 'src/components/[name]/[name]-[hash].js',
-      assetFileNames: 'src/assets/[name]-[hash][extname]' // Emit assets in the assets folder
+        chunk.name === 'global' ? 'index.js' : 'components/[name]/index.js', // Match output structure
+      chunkFileNames: 'components/[name]/[name]-[hash].js',
+      assetFileNames: 'assets/[name]-[hash][extname]' // Match new asset path
     }
   ],
-  external: ['react', 'react-dom'], // Exclude peer dependencies
+  external: ['react', 'react-dom'], // Ensure React is not bundled
   plugins: [
-    peerDepsExternal(),
+    peerDepsExternal(), // First to exclude peer dependencies
     resolve(),
     commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
-      sourceMap: true,
+    //   sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/src/components', // Match Rollup's dir option
-      noEmit: false, // Ensure TypeScript emits compiled files
-      include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
+      declarationDir: 'dist/components', // Match output structure
+      noEmit: false,
+      include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js']
     }),
     postcss({
       extract: (id) => {
-        // Extract CSS into the same folder as the component with .module.css extension
-        const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/src/components/${componentName}/${componentName}.module.css`;
+        const componentName = path.basename(path.dirname(id));
+        return `dist/components/${componentName}/${componentName}.module.css`;
       },
-      modules: true, // Enable CSS Modules
-      use: [
-        ['sass', { implementation: sass }] // Use Dart Sass explicitly
-      ],
-      minimize: true, // Minify CSS output
-      sourceMap: true // Generate source maps for CSS
+      modules: true,
+      use: [['sass', { implementation: sass }]],
+      minimize: true,
+      sourceMap: true
     }),
     url({
-      include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
-      limit: 0, // Emit all files instead of inlining them
-      emitFiles: true, // Ensure files are emitted to the output directory
-      fileName: 'src/assets/[name]-[hash][extname]', // Output file name format
-      destDir: 'dist/src/assets' // Output directory for image files
+      include: ['**/*.svg', '**/*.png', '**/*.webp'],
+      limit: 0,
+      emitFiles: true,
+      fileName: 'assets/[name]-[hash][extname]', // Correct asset path
+      destDir: 'dist/assets'
     }),
     copy({
       targets: [
         {
-          src: 'src/components/**/*.module.scss', // Source SCSS files
-          dest: 'dist/src/components', // Destination folder
+          src: 'src/components/**/*.module.scss',
+          dest: 'dist/components',
           rename: (name, extension, fullPath) => {
-            // Preserve the folder structure and file name
             const componentName = path.basename(path.dirname(fullPath));
             return `${componentName}/${name}.${extension}`;
           }
         },
         {
-          src: 'src/utils/**/*', // Copy all files in the utils folder
-          dest: 'dist/src/utils' // Place them in the dist/src/utils folder
+          src: 'src/utils/**/*',
+          dest: 'dist/utils'
         },
         {
-          src: 'src/assets/**/*', // Copy all files in the assets folder
-          dest: 'dist/src/assets' // Place them in the dist/src/assets folder
+          src: 'src/assets/**/*',
+          dest: 'dist/assets'
         }
       ],
-      hook: 'writeBundle' // Ensure copying happens after the bundle is written
+      hook: 'writeBundle'
     })
   ]
 };
