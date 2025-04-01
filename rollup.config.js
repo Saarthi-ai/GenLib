@@ -49,13 +49,13 @@ export default {
   input: './src/index.ts', // Explicitly set the entry point to src/index.ts
   output: [
     {
-      dir: 'dist', // Output global entry point to the dist folder
+      dir: 'dist', // Output everything to the dist folder
       format: 'esm',
       sourcemap: true,
       entryFileNames: (chunk) =>
-        chunk.name === 'global' ? 'index.js' : 'src/components/[name].js', // Place all component files in a single folder
-      chunkFileNames: 'src/components/[name]-[hash].js',
-      assetFileNames: 'src/assets/[name]-[hash][extname]' // Emit assets in the assets folder
+        chunk.name === 'global' ? 'index.js' : 'components/[name].js', // Place the global entry as index.js in the root
+      chunkFileNames: 'components/[name]-[hash].js', // Place component chunks in components folder
+      assetFileNames: 'assets/[name]-[hash][extname]' // Emit assets in the assets folder
     }
   ],
   external: ['react', 'react-dom'], // Exclude peer dependencies
@@ -67,15 +67,14 @@ export default {
       tsconfig: './tsconfig.json',
       sourceMap: true,
       declaration: true,
-      declarationDir: 'dist/src', // Place declaration files in dist/src
+      declarationDir: 'dist/types', // Place declaration files in dist/types
       noEmit: false, // Ensure TypeScript emits compiled files
       include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
     }),
     postcss({
       extract: (id) => {
-        // Extract CSS into the same folder as the component with .module.css extension
         const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/src/components/${componentName}/${componentName}.module.css`;
+        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the correct folder
       },
       modules: true, // Enable CSS Modules
       use: [
@@ -88,22 +87,22 @@ export default {
       include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
       limit: 0, // Emit all files instead of inlining them
       emitFiles: true, // Ensure files are emitted to the output directory
-      fileName: 'src/assets/[name]-[hash][extname]', // Output file name format
-      destDir: 'dist/src/assets' // Output directory for image files
+      fileName: 'assets/[name]-[hash][extname]', // Output file name format
+      destDir: 'dist/assets' // Output directory for image files
     }),
     copy({
       targets: [
         {
           src: 'src/utils/**/*', // Copy all files in the utils folder
-          dest: 'dist/src/utils' // Place them in the dist/src/utils folder
+          dest: 'dist/utils' // Place them in the dist/utils folder
         },
         {
           src: 'src/assets/**/*', // Copy all files in the assets folder
-          dest: 'dist/src/assets' // Place them in the dist/src/assets folder
+          dest: 'dist/assets' // Place them in the dist/assets folder
         },
         {
           src: 'src/components/**/*.scss', // Copy all SCSS files from components
-          dest: 'dist/src/components' // Place them in the dist/src/components folder
+          dest: 'dist/components' // Place them in the dist/components folder
         }
       ],
       hook: 'writeBundle' // Ensure copying happens after the bundle is written

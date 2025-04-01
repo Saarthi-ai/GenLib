@@ -2,8 +2,8 @@
   "name": "genlib",
   "version": "1.0.0",
   "module": "dist/index.js",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.js", 
+  "types": "dist/types/index.d.ts", 
   "dependencies": {
     "@rollup/plugin-url": "^8.0.2",
     "postcss": "^8.5.3",
@@ -40,7 +40,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "rollup -c rollup.config.cjs", 
     "prepare": "npm run build",
     "test": "jest"
   },
