@@ -1,3 +1,2 @@
-import React from "react";
-export declare function Br(): React.JSX.Element;
+export declare function Br(): import("react/jsx-runtime").JSX.Element;
 export default Br;

@@ -1,73 +1,48 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import copy from 'rollup-plugin-copy';
 import url from '@rollup/plugin-url';
-import sass from 'sass'; // Import Dart Sass explicitly
-import path from 'path';
 
 export default {
-  input: './src/index.ts', // Explicitly set the entry point to src/index.ts
+  input: 'src/index.ts', // Entry file
   output: [
     {
-      dir: 'dist', // Output everything to the dist folder
+      file: 'dist/index.cjs.js',
+      format: 'cjs',
+      sourcemap: true
+    },
+    {
+      file: 'dist/index.esm.js',
       format: 'esm',
-      sourcemap: false, // Disable source map generation
-      entryFileNames: 'index.js', // Ensure the global entry is named index.js
-      chunkFileNames: 'components/[name]-[hash].js', // Place component chunks in components folder
-      assetFileNames: 'assets/[name]-[hash][extname]' // Emit assets in the assets folder
+      sourcemap: true
     }
   ],
-  external: ['react', 'react-dom'], // Exclude peer dependencies
+  external: ['react', 'react-dom'],
   plugins: [
     peerDepsExternal(),
-    resolve(),
+    resolve({
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
+    }),
     commonjs(),
     typescript({
-      tsconfig: './tsconfig.json',
-      sourceMap: true,
-      declaration: true,
-      declarationDir: 'dist/components', // Place declaration files directly in dist/components
-      noEmit: false, // Ensure TypeScript emits compiled files
-      include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js'] // Include .ts, .tsx, and .js files
+      tsconfig: './tsconfig.json'
+    }),
+    babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**',
+      presets: ['@babel/preset-react']
     }),
     postcss({
-      extract: (id) => {
-        const componentName = path.basename(path.dirname(id)); // Get the component folder name
-        return `dist/components/${componentName}/${componentName}.module.css`; // Place CSS in the correct folder
-      },
-      modules: true, // Enable CSS Modules
-      use: [
-        ['sass', { implementation: sass }] // Use Dart Sass explicitly
-      ],
-      minimize: true, // Minify CSS output
-      sourceMap: true // Generate source maps for CSS
+      extract: true, // Extracts CSS files
+      modules: true, // Enables CSS Modules
+      use: ['sass']
     }),
     url({
-      include: ['**/*.svg', '**/*.png', '**/*.webp'], // Include image formats
-      limit: 0, // Emit all files instead of inlining them
-      emitFiles: true, // Ensure files are emitted to the output directory
-      fileName: 'assets/[name]-[hash][extname]', // Output file name format
-      destDir: 'dist/assets' // Output directory for image files
-    }),
-    copy({
-      targets: [
-        {
-          src: 'src/utils/**/*', // Copy all files in the utils folder
-          dest: 'dist/utils' // Place them in the dist/utils folder
-        },
-        {
-          src: 'src/assets/**/*', // Copy all files in the assets folder
-          dest: 'dist/assets' // Place them in the dist/assets folder
-        },
-        {
-          src: 'src/components/**/*.scss', // Copy all SCSS files from components
-          dest: 'dist/components' // Place them in the dist/components folder
-        }
-      ],
-      hook: 'writeBundle' // Ensure copying happens after the bundle is written
+      include: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.webp'],
+      limit: 0
     })
   ]
 };

@@ -1,12 +1,13 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ImgComp from '../src/components/imgComp/imgComp';
+// import ImgComp from '../src/components/imgComp/imgComp';
 // Fix import to use named export
 
 // import { MyComponent } from '../components/MyComponent'; // Fix import to use named export
-import AddButton from '../src/components/addButton/AddButton';
-import BiSelect from '../src/components/biSelect/BiSelect';
+// import AddButton from '../src/components/addButton/AddButton';
+// import BiSelect from '../src/components/biSelect/BiSelect';
 import { Br } from '../src/components/br/Br';
+import DemoComponent from '../dist/components/components/DemoComponent';
 // import Breadcrum from '../src/components/breadcrum/Breadcrum';
 
 const App = () => {
@@ -17,10 +18,11 @@ const App = () => {
   return (
     <div>
       hello
-      <ImgComp />
+      {/* <ImgComp /> */}
       {/* <MyComponent title="Hello, World!" /> */}
-      <AddButton text="Add" onCountChange={(count) => console.log(count)} />
-      <BiSelect opt1="Option 1" opt2="Option 2" onUpdate={(event) => console.log(event)} />
+      {/* <AddButton text="Add" onCountChange={(count) => console.log(count)} /> */}
+      {/* <BiSelect opt1="Option 1" opt2="Option 2" onUpdate={(event) => console.log(event)} /> */}
+      <DemoComponent message='asfzxc' />
       <Br />
       {/* <Breadcrum /> */}
     </div>
