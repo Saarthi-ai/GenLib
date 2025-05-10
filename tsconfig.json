@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES5", // Target ES5 for compatibility
+    "target": "ESNext", // Target ESNext for compatibility
     "module": "ESNext", // Use ESNext modules for tree-shaking
     "lib": ["DOM", "ESNext"], // Include DOM and ESNext libraries
-    "jsx": "react", // Enable JSX for React
+    "jsx": "react", // Ensure JSX is set to React
     "strict": true, // Enable strict type-checking
     "esModuleInterop": true, // Allow default imports from CommonJS modules
     "skipLibCheck": true, // Skip type checking of declaration files
     "moduleResolution": "node", // Use Node.js module resolution
-    "declaration": true, // Generate declaration files
-    "declarationDir": "./dist/components", // Output declaration files to dist/components
-    "outDir": "./dist", // Output compiled files to dist
+    "declaration": true, // Ensure declaration files are generated
+    "declarationDir": "dist/components", // Place declaration files directly in dist/components
+    "outDir": "dist", // Output compiled files to the dist folder
     "sourceMap": true, // Generate source maps
     "baseUrl": "./", // Base URL for module resolution
     "paths": {
       "*": ["src/*"] // Map imports to the src folder
     },
-    "types": ["react", "react-dom"] // Include React and React DOM types
+    "types": ["react", "react-dom"], // Include React and React DOM types
+    "allowSyntheticDefaultImports": true, // Allow default imports for modules without default exports
+    "emitDeclarationOnly": false, // Emit both JavaScript and declaration files
+    "resolveJsonModule": true // Resolve JSON modules
   },
   "include": ["src/**/*"], // Include all files in the src folder
-  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist folders
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"] // Exclude node_modules, dist, and test files
 }
